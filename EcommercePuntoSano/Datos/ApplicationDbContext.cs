@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EcommercePuntoSano.Modelos;
+using Microsoft.EntityFrameworkCore;
 
 namespace EcommercePuntoSano.Datos
 {
@@ -7,14 +8,9 @@ namespace EcommercePuntoSano.Datos
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            // Aquí puedes configurar tus entidades, relaciones, etc.
-        }
-        // DbSets para tus entidades
-        // public DbSet<Producto> Productos { get; set; }
-        // public DbSet<Categoria> Categorias { get; set; }
-        // etc.
+        
+        public DbSet<Categoria> Categorias { get; set; } 
+       
+
     }
 }
