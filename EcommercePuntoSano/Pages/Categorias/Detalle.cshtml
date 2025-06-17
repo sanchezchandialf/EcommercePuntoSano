@@ -1,0 +1,39 @@
+﻿@page
+@model EcommercePuntoSano.Pages.Categorias.DetalleModel
+@{
+	ViewData["Title"] = "Detalle Categoria";
+}
+
+<div class="container mt-5">
+	<div class="card shadow-lg">
+		<div class="card-header bg-primary text-white">
+			<h4><i class="fade fa-plus-circle">Detalle  Categoria</i></h4>
+		</div>
+		<div class="card-body">
+			<dl class="row">
+				<dt class="col-sm-3">
+					ID
+				</dt>
+				<dd class="col-sm-9">@Model.categoria.Id</dd>
+				<dt class="col-sm-3">
+					Nombre
+				</dt>
+				<dd class="col-sm-9">@Model.categoria.Nombre</dd>
+				<dt class="col-sm-3">
+					Orden de Visualizacion
+				</dt>
+				<dd class="col-sm-9">@Model.categoria.OrdenVisualizacion</dd>
+				<dt class="col-sm-3">
+					Orden de Visualizacion
+				</dt>
+				<dd class="col-sm-9">@Model.categoria.FechaCreacion.ToString("dd/MM/yyyyy")</dd>
+			</dl>
+
+
+		</div>
+		<div class="card-footer text-end">
+			<a asp-page="Index" class="btn btn-secondary">
+				<i class="fade fa-arror-left"></i>Regresar
+			</a>
+			
+		</div>

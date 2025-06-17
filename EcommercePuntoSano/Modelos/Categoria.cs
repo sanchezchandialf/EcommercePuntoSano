@@ -12,9 +12,9 @@ namespace EcommercePuntoSano.Modelos
         public string Nombre { get; set; }
 
         [Required(ErrorMessage = "El orden de visualizacion es obligatorio")]
-        [StringLength(100, ErrorMessage = "El nombre no puede exceder los 50 caracteres.")]
+        [Range(1,int.MaxValue,ErrorMessage = "El orden debe ser mayor a 1")]
         [Display(Name = "Orden de Visualizacion ")]
-        public string OrdenVisualizacion { get; set; }
+        public int OrdenVisualizacion { get; set; }
 
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
     }
