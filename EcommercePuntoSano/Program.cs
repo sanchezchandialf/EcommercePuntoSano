@@ -1,4 +1,5 @@
-using EcommercePuntoSano.Datos;
+
+using Ecommerce.DataAccess;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

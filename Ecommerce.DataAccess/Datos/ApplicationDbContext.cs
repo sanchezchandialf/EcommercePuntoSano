@@ -1,7 +1,8 @@
-﻿using EcommercePuntoSano.Modelos;
+﻿using Ecommerce.Models;
+
 using Microsoft.EntityFrameworkCore;
 
-namespace EcommercePuntoSano.Datos
+namespace Ecommerce.DataAccess
 {
     public class ApplicationDbContext:DbContext
     {

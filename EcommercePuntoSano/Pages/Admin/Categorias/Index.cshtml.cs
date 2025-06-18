@@ -1,11 +1,12 @@
-using EcommercePuntoSano.Datos;
-using EcommercePuntoSano.Modelos;
+
+using Ecommerce.DataAccess;
+using Ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
-namespace EcommercePuntoSano.Pages.Categorias
+namespace EcommercePuntoSano.Pages.Admin.Categorias
 {
     public class IndexModel : PageModel
     {

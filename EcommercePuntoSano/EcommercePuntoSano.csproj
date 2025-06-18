@@ -16,7 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\CategoriasScaffold\" />
+    <Folder Include="Pages\Cliente\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ecommerce.DataAccess\Ecommerce.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

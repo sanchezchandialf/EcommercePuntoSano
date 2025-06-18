@@ -1,9 +1,10 @@
-using EcommercePuntoSano.Datos;
-using EcommercePuntoSano.Modelos;
+
+using Ecommerce.DataAccess;
+using Ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace EcommercePuntoSano.Pages.Categorias
+namespace EcommercePuntoSano.Pages.Admin.Categorias
 {
     public class CrearModel : PageModel
     {
