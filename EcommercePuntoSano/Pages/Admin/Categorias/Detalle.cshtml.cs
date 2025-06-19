@@ -9,9 +9,9 @@ namespace EcommercePuntoSano.Pages.Admin.Categorias
     public class DetalleModel : PageModel
     {
 
-        private readonly ApplicationDbContext _context;
+        private readonly IcategoriaRepository _context;
 
-        public DetalleModel(ApplicationDbContext context)
+        public DetalleModel(IcategoriaRepository context)
         {
             _context = context;
         }

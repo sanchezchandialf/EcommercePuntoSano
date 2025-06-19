@@ -8,9 +8,9 @@ namespace EcommercePuntoSano.Pages.Admin.Categorias
 {
     public class Editar : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IcategoriaRepository _context;
 
-        public Editar(ApplicationDbContext context)
+        public Editar(IcategoriaRepository context)
         {
             _context = context;
         }

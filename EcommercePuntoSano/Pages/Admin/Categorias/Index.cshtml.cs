@@ -4,41 +4,39 @@ using Ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
+
 
 namespace EcommercePuntoSano.Pages.Admin.Categorias
 {
     public class IndexModel : PageModel
     {
       
-            private readonly ApplicationDbContext _context;
-        public IndexModel(ApplicationDbContext context)
+        private readonly IcategoriaRepository _bdCategoria;
+        public IndexModel(IcategoriaRepository bdCategoria)
         {
-            _context = context;
+            _bdCategoria = bdCategoria;
         }
 
-        public IList<Categoria> Categorias { get; set; } = default!;
+        public IEnumerable<Categoria> Categorias { get; set; } = default!;
     
-        public async Task Onget()
+        public void OnGet()
         {
-         
-               Categorias = await _context.Categorias
-                .OrderBy(c => c.OrdenVisualizacion)
-                .ToListAsync();
+
+            Categorias = _bdCategoria.GetAll();
 
 
         }
 
         public async Task<IActionResult> OnPostDeleteAsync([FromBody]int id)
         {
-            var categoria = await _context.Categorias.FindAsync(id);
+            var categoria = await _bdCategoria.Categorias.FindAsync(id);
             if (categoria == null) {
                 TempData["Error"] = "La categoria no fue encontrada";
                 return RedirectToPage("Index");
 
             }
-            _context.Categorias.Remove(categoria);
-            await _context.SaveChangesAsync();
+            _bdCategoria.Categorias.Remove(categoria);
+            await _bdCategoria.SaveChangesAsync();
             TempData["Success"] = "Categoria Eliminada con exito";
             return new JsonResult(new {success=true});
         }

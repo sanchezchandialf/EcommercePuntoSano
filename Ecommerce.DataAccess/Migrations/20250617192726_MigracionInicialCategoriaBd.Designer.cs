@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Ecommerce.DataAccess.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(IcategoriaRepository))]
     [Migration("20250617192726_MigracionInicialCategoriaBd")]
     partial class MigracionInicialCategoriaBd
     {

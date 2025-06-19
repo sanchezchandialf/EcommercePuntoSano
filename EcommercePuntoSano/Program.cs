@@ -1,6 +1,9 @@
 
 using Ecommerce.DataAccess;
+using Ecommerce.DataAccess.Repository;
+using Ecommerce.DataAccess.Repository.Irepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +19,7 @@ builder.Services.AddCors(options =>
 
 
 // Configuración de EF Core con MySQL
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<Ecommerce.DataAccess.IcategoriaRepository>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         new MySqlServerVersion(new Version(8, 0, 34))
@@ -27,6 +30,8 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
+//Agregar reposositorios al contenedor de Inyeccion de Dependencias
+builder.Services.AddScoped<Ecommerce.DataAccess.Repository.Irepository.IcategoriaRepository, CategoriaRepository>();
 // Configurar middleware del pipeline HTTP
 if (!app.Environment.IsDevelopment())
 {
