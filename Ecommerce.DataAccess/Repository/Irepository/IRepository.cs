@@ -9,14 +9,14 @@ namespace Ecommerce.DataAccess.Repository.Irepository
 {
      public interface IRepository<T> where T : class
     {
-        //Metodos para CRUD , Leer , Crear, Actualizar y Eliminar
-
-        //Metodos para CRUD, Leer registros , registro individual
-        //Crear registro , Borrar y Borrar Masivo
+        //Métodos para CRUD. Leer registros, registro individual
+        //Crear registro, Borrar y Borrar masive
         void Add(T entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);
         IEnumerable<T> GetAll();
         T GetFirstOrDefault(Expression <Func<T,bool>> ? filter=null);
+
+        bool ExisteNombre(string  nombre);
     }
 }

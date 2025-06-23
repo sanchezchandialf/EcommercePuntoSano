@@ -19,7 +19,7 @@ builder.Services.AddCors(options =>
 
 
 // Configuración de EF Core con MySQL
-builder.Services.AddDbContext<Ecommerce.DataAccess.IcategoriaRepository>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         new MySqlServerVersion(new Version(8, 0, 34))
@@ -27,11 +27,11 @@ builder.Services.AddDbContext<Ecommerce.DataAccess.IcategoriaRepository>(options
 
 // Agregar servicios de Razor Pages
 builder.Services.AddRazorPages();
-
+//Agregar reposositorios al contenedor de Inyeccion de Dependencias
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
-//Agregar reposositorios al contenedor de Inyeccion de Dependencias
-builder.Services.AddScoped<Ecommerce.DataAccess.Repository.Irepository.IcategoriaRepository, CategoriaRepository>();
+
 // Configurar middleware del pipeline HTTP
 if (!app.Environment.IsDevelopment())
 {

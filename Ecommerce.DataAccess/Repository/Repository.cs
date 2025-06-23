@@ -13,16 +13,21 @@ namespace Ecommerce.DataAccess.Repository
     public class Repository<T> : IRepository<T> where T : class
     {
 
-        private readonly IcategoriaRepository _context;
+        private readonly ApplicationDbContext _context;
         internal DbSet<T> Dbset;
 
-        public Repository(IcategoriaRepository context)
+        public Repository(ApplicationDbContext context)
         {
-            context = context;
+            _context = context;
             this.Dbset = _context.Set<T>();
         }
         public void Add(T entity)=>Dbset.Add(entity);
-        
+
+        public bool ExisteNombre(string nombre)
+        {
+            return _context.Categorias.Any(c => c.Nombre == nombre);
+        }
+
         public IEnumerable<T> GetAll()
         {
            IQueryable<T> query = Dbset;

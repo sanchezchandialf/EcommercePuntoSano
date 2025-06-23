@@ -12,7 +12,6 @@ namespace Ecommerce.DataAccess.Repository.Irepository
        
         //Si se quiere actualizar una categoria
         void Update(Categoria entity);
-        //Si se quiere guardar una categoria 
-        void Save();
+        
     }
 }

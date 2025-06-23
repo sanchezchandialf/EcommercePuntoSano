@@ -1,5 +1,6 @@
 
-using Ecommerce.DataAccess;
+
+using Ecommerce.DataAccess.Repository.Irepository;
 using Ecommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -7,18 +8,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace EcommercePuntoSano.Pages.Admin.Categorias
 {
     public class Editar : PageModel
-    {
-        private readonly IcategoriaRepository _context;
+   {
+        private readonly IUnitOfWork _unitOfWork;
 
-        public Editar(IcategoriaRepository context)
+        public Editar(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
         [BindProperty]
         public Categoria categoria { get; set; }
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            categoria = await _context.Categorias.FindAsync(id);
+            categoria = _unitOfWork.Categoria.GetFirstOrDefault(c => c.Id == id);
             if (categoria == null)
             {
                 return NotFound();
@@ -33,7 +34,7 @@ namespace EcommercePuntoSano.Pages.Admin.Categorias
                 return Page();
             }
 
-            var categoriaBd = await _context.Categorias.FindAsync(categoria.Id);
+            var categoriaBd = _unitOfWork.Categoria.GetFirstOrDefault(c => c.Id == categoria.Id);
             if (categoriaBd == null)
             {
                 return NotFound();
@@ -42,7 +43,7 @@ namespace EcommercePuntoSano.Pages.Admin.Categorias
             categoriaBd.Nombre = categoria.Nombre;
             categoriaBd.OrdenVisualizacion = categoria.OrdenVisualizacion;
             //Guardar Cambios
-            await _context.SaveChangesAsync();
+            _unitOfWork.Save();
             TempData["Success"] = "Categoria editada con exito";
             return RedirectToPage("Index");
         }

@@ -12,15 +12,15 @@ namespace Ecommerce.DataAccess.Repository
     {
 
 
-        private readonly IcategoriaRepository _context;
-        public CategoriaRepository(IcategoriaRepository context) : base(context)
+        private readonly ApplicationDbContext _context;
+        public CategoriaRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
 
         public void Save()
         {
-           _context.Save();
+            throw new NotImplementedException();
         }
 
         public void Update(Categoria categoria)
