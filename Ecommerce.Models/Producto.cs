@@ -24,7 +24,7 @@ namespace Ecommerce.Models
         [StringLength(300, ErrorMessage = "La ruta de la imagen no puede superar los 300 caracteres ")]
         public string Imagen { get; set; }
 
-        [Required(ErrorMessage = "El precio es obligatorio"]
+        [Required(ErrorMessage = "El precio es obligatorio")]
         [Range(0.01, double.MaxValue, ErrorMessage = "El precio debe ser mayor a 0")]
         public decimal Precio { get; set; }
 

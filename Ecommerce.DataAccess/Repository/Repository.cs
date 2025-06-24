@@ -15,6 +15,7 @@ namespace Ecommerce.DataAccess.Repository
 
         private readonly ApplicationDbContext _context;
         internal DbSet<T> Dbset;
+      
 
         public Repository(ApplicationDbContext context)
         {

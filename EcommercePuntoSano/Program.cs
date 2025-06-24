@@ -32,6 +32,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
 
+
 // Configurar middleware del pipeline HTTP
 if (!app.Environment.IsDevelopment())
 {
