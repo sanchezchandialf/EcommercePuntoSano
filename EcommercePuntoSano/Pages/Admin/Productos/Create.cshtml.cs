@@ -1,45 +1,70 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Ecommerce.DataAccess;
 using Ecommerce.Models;
+using Ecommerce.DataAccess.Repository.Irepository;
 
 namespace EcommercePuntoSano.Pages.Admin.Productos
 {
     public class CreateModel : PageModel
     {
-        private readonly Ecommerce.DataAccess.ApplicationDbContext _context;
+        private IUnitOfWork _unitOfWork;
+        
+        
+        [BindProperty]
+        public Producto Producto { get; set; } = default!;
 
-        public CreateModel(Ecommerce.DataAccess.ApplicationDbContext context)
+        public IEnumerable<SelectListItem> Categorias { get; set; }
+        public CreateModel(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult OnGet()
         {
-        ViewData["CategoriaId"] = new SelectList(_context.Categorias, "Id", "Nombre");
+            Categorias = _unitOfWork.Categoria.GetAll()
+                   .Select(c => new SelectListItem
+                   {
+                       Value = c.Id.ToString(),
+                       Text = c.Nombre
+                   });
+
+            //Validación por si la tabla categorías no tiene ni una sola categoría creada
+            if (!Categorias.Any())
+            {
+                ModelState.AddModelError(string.Empty, "No hay categorías disponibles. Por favor, agregue categorías primero.");
+            }
+
             return Page();
+
         }
 
-        [BindProperty]
-        public Producto Producto { get; set; } = default!;
 
-        // For more information, see https://aka.ms/RazorPagesCRUD.
+
+
         public async Task<IActionResult> OnPostAsync()
         {
+            
+            if (_unitOfWork.Producto.ExisteNombre(Producto.Nombre))
+            {
+                ModelState.AddModelError("Producto.Nombre","El nombre del producto ya existe. Por favor elige otro");
+                return Page();
+            
+            }
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Productos.Add(Producto);
-            await _context.SaveChangesAsync();
+            Producto.FechaCreacion = DateTime.Now;
+            _unitOfWork.Producto.Add(Producto);
+            _unitOfWork.Save();
 
-            return RedirectToPage("./Index");
+            // Redireccionar después de guardar
+            return RedirectToPage("Index"); // Cambiá "Index" por la página que quieras mostrar después
         }
     }
 }

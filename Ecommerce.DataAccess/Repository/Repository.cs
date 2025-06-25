@@ -36,6 +36,7 @@ namespace Ecommerce.DataAccess.Repository
             //query = query.Include(x => x.PropiedadNavegacion);
             //Si se quiere filtrar por una propiedad
             //query = query.Where(x => x.Propiedad == "valor");
+
             return query.ToList();
         }
 
