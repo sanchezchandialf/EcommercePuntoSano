@@ -33,6 +33,8 @@ namespace Ecommerce.Models
         [Range(0, int.MaxValue, ErrorMessage = "la cantidad no puede ser negativa ")]
         public int CantidadDisponible { get; set; }
 
+   
+
         [Required(ErrorMessage ="La categoria es obligatoria")]
         public int CategoriaId { get; set; }
 
