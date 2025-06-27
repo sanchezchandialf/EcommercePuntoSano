@@ -65,6 +65,9 @@ namespace Ecommerce.DataAccess.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
+                    b.Property<DateTime>("FechaCreacion")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Imagen")
                         .IsRequired()
                         .HasMaxLength(300)

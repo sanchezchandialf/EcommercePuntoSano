@@ -16,7 +16,7 @@
 					<label asp-for="categoria.Nombre" class="form-label"></label>
 					<div class="input-group">
 						<span class="input-group-text"><i class="fa fa-tag"></i></span>
-						<input asp-for="categoria.Nombre" class="form-control" placeholder="Ingrese un nombre"/>
+						<input asp-for="categoria.Nombre" class="form-control" placeholder="Ingrese un nombre" />
 					</div>
 					<span asp-validation-for="categoria.Nombre" class="text-danger"></span>
 				</div>
@@ -43,20 +43,20 @@
 
 
 				</div>
-			
-			
+
+
 			</form>
-				
-		
+
+
+		</div>
+
+
 	</div>
 
+	@section Scripts {
+		<partial name="_ValidationScriptsPartial" />
 
-</div>
-
-@section Scripts{
-	<partial name="_ValidationScriptsPartial"/>
-
-	<script>
+		<script>
 
 			document.addEventListener("DOMContentLoaded", function() {
 				const validationSummary = document.getElementById("validation-summary");
@@ -65,5 +65,5 @@
 				}
 			});
 
-	</script>
-}
+		</script>
+	}

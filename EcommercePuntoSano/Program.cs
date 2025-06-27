@@ -50,7 +50,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 // Aplicar política de CORS
-app.UseCors("AllowLocalhost");
+app.UseCors("AllowFrontendLocal");
 
 // Autorización (si es que usás login o roles)
 app.UseAuthorization();

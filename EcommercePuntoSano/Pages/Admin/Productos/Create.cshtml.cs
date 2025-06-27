@@ -1,11 +1,11 @@
 ﻿
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Ecommerce.DataAccess;
 using Ecommerce.Models;
 using Ecommerce.DataAccess.Repository.Irepository;
+
 
 namespace EcommercePuntoSano.Pages.Admin.Productos
 {

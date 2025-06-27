@@ -26,7 +26,7 @@
                     <th>Imagen</th>
                     <th>Precio</th>
                     <th>Cantidad</th>
-                    <th>Categoría</th>
+                    <th>Categoría.Nombre</th>
                     <th>Fecha de Creación</th>
                     <th>Acciones</th>
                 </tr>
@@ -41,7 +41,10 @@
                         <td>@producto.Id</td>
                         <td>@producto.Nombre</td>
                         <td>@producto.Descripcion</td>
-                        <td></td>
+                        <td>
+                            <img /> src="@Url.Content($"~/productos/{producto.Imagen}")" alt="@producto.Nombre" class="img-thumbnail" style="width: 100px; height: 100px;">
+
+                        </td>
                         <td>@producto.Precio</td>
                         <td>@producto.CantidadDisponible</td>
                         <td>@producto.FechaCreacion.ToString("dd/MM/yyyy")</td>

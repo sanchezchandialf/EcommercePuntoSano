@@ -24,7 +24,8 @@ namespace EcommercePuntoSano.Pages.Admin.Productos
         public IEnumerable <Producto> Productos { get;set; } = default!;
         public void OnGet()
         {
-            Productos = _unitOfWork.Producto.GetAll();
+            //Cargar todas las categorias desde la base de datos
+            Productos = _unitOfWork.Producto.GetAll("Categoria");
         }
 
     }

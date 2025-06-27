@@ -29,14 +29,21 @@ namespace Ecommerce.DataAccess.Repository
             return _context.Categorias.Any(c => c.Nombre == nombre);
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includePropierties = null)
         {
            IQueryable<T> query = Dbset;
-            //Si se quiere incluir propiedades de navegacion
-            //query = query.Include(x => x.PropiedadNavegacion);
-            //Si se quiere filtrar por una propiedad
-            //query = query.Where(x => x.Propiedad == "valor");
+        
+            //Incluimos la relacion
+            if (!string.IsNullOrWhiteSpace(includePropierties))
+            {
+                foreach (var includeProperty in includePropierties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty.Trim());
+                }
+            }
+            {
 
+            }
             return query.ToList();
         }
 

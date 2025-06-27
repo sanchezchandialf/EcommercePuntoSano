@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,6 +24,11 @@ namespace Ecommerce.Models
         [Required(ErrorMessage = "La imagen  es obligatoria")]
         [StringLength(300, ErrorMessage = "La ruta de la imagen no puede superar los 300 caracteres ")]
         public string Imagen { get; set; }
+
+
+        [NotMapped]
+        public IFormFile? ImagenSubida { get; set; }
+
 
         [Required(ErrorMessage = "El precio es obligatorio")]
         [Range(0.01, double.MaxValue, ErrorMessage = "El precio debe ser mayor a 0")]

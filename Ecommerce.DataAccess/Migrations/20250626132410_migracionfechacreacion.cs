@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Ecommerce.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class CorrecionProducto : Migration
+    public partial class migracionfechacreacion : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -46,6 +46,7 @@ namespace Ecommerce.DataAccess.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Precio = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     CantidadDisponible = table.Column<int>(type: "int", nullable: false),
+                    FechaCreacion = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

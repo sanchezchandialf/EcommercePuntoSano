@@ -38,6 +38,8 @@ namespace EcommercePuntoSano.Pages.Admin.Categorias
             {
                 return Page();
             }
+
+        
             //asignar la fecha de creacion
             categoria.FechaCreacion = DateTime.Now;
 
