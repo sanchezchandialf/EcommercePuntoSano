@@ -21,8 +21,8 @@ namespace Ecommerce.Models
         [StringLength(500, ErrorMessage = "La descripcion no puede superar los 500 caracteres")]
         public string Descripcion { get; set; }
 
-        [Required(ErrorMessage = "La imagen  es obligatoria")]
-        [StringLength(300, ErrorMessage = "La ruta de la imagen no puede superar los 300 caracteres ")]
+        //[Required(ErrorMessage = "La imagen  es obligatoria")]
+        //[StringLength(300, ErrorMessage = "La ruta de la imagen no puede superar los 300 caracteres ")]
         public string Imagen { get; set; }
 
 
@@ -43,7 +43,7 @@ namespace Ecommerce.Models
 
 
         [Required(ErrorMessage ="La categoria es obligatoria")]
-        public int CategoriaId { get; set; }
+        public int? CategoriaId { get; set; }
 
         [ForeignKey("CategoriaId")]
 
