@@ -23,7 +23,7 @@ namespace Ecommerce.Models
 
         //[Required(ErrorMessage = "La imagen  es obligatoria")]
         //[StringLength(300, ErrorMessage = "La ruta de la imagen no puede superar los 300 caracteres ")]
-        public string Imagen { get; set; }
+        public string? Imagen { get; set; }
 
 
         [NotMapped]
@@ -34,7 +34,7 @@ namespace Ecommerce.Models
         [Range(0.01, double.MaxValue, ErrorMessage = "El precio debe ser mayor a 0")]
         public decimal Precio { get; set; }
 
-
+        [Display(Name = "Cantidad Disponible")]
         [Required(ErrorMessage = "La cantidad es obligatoria")]
         [Range(0, int.MaxValue, ErrorMessage = "la cantidad no puede ser negativa ")]
         public int CantidadDisponible { get; set; }
@@ -43,7 +43,9 @@ namespace Ecommerce.Models
 
 
         [Required(ErrorMessage ="La categoria es obligatoria")]
+        [Display(Name = "Categoría")]
         public int? CategoriaId { get; set; }
+
 
         [ForeignKey("CategoriaId")]
 
