@@ -18,11 +18,7 @@ namespace Ecommerce.DataAccess.Repository
             _context = context;
         }
 
-        public void Save()
-        {
-        
-            throw new NotImplementedException();
-        }
+       
 
         public void Update(Producto producto)
         {
@@ -31,11 +27,9 @@ namespace Ecommerce.DataAccess.Repository
             objDesdeBd.Descripcion = producto.Descripcion;
             objDesdeBd.Precio = producto.Precio;
             objDesdeBd.CantidadDisponible = producto.CantidadDisponible;
-            if (producto.Imagen != null)
-            {
-                objDesdeBd.Imagen = producto.Imagen;
+            objDesdeBd.CategoriaId = producto.CategoriaId;
+            objDesdeBd.Imagen = producto.Imagen;
 
-            }
         }
     }
 }

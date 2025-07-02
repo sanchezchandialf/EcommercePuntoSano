@@ -21,9 +21,9 @@ namespace EcommercePuntoSano.Pages.Admin.Productos
         }
 
         [BindProperty]
-        public Producto Producto { get; set; } = default!;
+        public Producto Producto { get; set; } = new Producto();
 
-        
+
 
         // Lista de categorías para el dropdown
         public IEnumerable<SelectListItem> Categorias { get; set; }
@@ -51,12 +51,12 @@ namespace EcommercePuntoSano.Pages.Admin.Productos
         {
 
 
-            Categorias = _unitOfWork.Categoria.GetAll()
-     .Select(c => new SelectListItem
-     {
-         Value = c.Id.ToString(),
-         Text = c.Nombre
-     });
+                    Categorias = _unitOfWork.Categoria.GetAll()
+             .Select(c => new SelectListItem
+             {
+                 Value = c.Id.ToString(),
+                 Text = c.Nombre
+             });
 
             // Validación personalizada: comprobar si el nombre ya existe V 2.0 con Repository
             if (_unitOfWork.Producto.ExisteNombre(Producto.Nombre))
