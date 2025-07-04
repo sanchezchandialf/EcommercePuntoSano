@@ -41,11 +41,10 @@ namespace Ecommerce.Models
 
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
-
-        [Required(ErrorMessage ="La categoria es obligatoria")]
+        
+        [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar una categoría válida.")]
         [Display(Name = "Categoría")]
-        public int? CategoriaId { get; set; }
-
+        public int CategoriaId { get; set; } 
 
         [ForeignKey("CategoriaId")]
 
