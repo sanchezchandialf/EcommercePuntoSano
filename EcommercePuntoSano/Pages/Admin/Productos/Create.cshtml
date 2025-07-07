@@ -1,0 +1,127 @@
+﻿@page
+@model EcommercePuntoSano.Pages.Admin.Productos.CreateModel
+
+@{
+    ViewData["Title"] = "Crear Producto";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h4><i class="fa fa-plus-circle"></i> Crear Nuevo Producto</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data" id="createProductForm">
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label asp-for="Producto.Nombre" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-tag"></i></span>
+                                <input asp-for="Producto.Nombre" class="form-control" placeholder="Ej: Miel Pura de Abeja" />
+                            </div>
+                            <span asp-validation-for="Producto.Nombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Producto.Descripcion" class="form-label"></label>
+                            <textarea asp-for="Producto.Descripcion" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Producto.Descripcion" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 mb-3">
+                                <label asp-for="Producto.Precio" class="form-label"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
+                                    <input asp-for="Producto.Precio" class="form-control" placeholder="Ej: 1500.50" />
+                                </div>
+                                <span asp-validation-for="Producto.Precio" class="text-danger"></span>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label asp-for="Producto.CantidadDisponible" class="form-label"></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-boxes-stacked"></i></span>
+                                    <input asp-for="Producto.CantidadDisponible" class="form-control" placeholder="Ej: 50" />
+                                </div>
+                                <span asp-validation-for="Producto.CantidadDisponible" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Producto.CategoriaId" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-table-list"></i></span>
+                                <select asp-for="Producto.CategoriaId" asp-items="Model.Categorias" class="form-select">
+                                    <option value="">-- Seleccione una Categoría --</option>
+                                </select>
+                            </div>
+                            <span asp-validation-for="Producto.CategoriaId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            <label asp-for="Producto.ImagenSubida" class="form-label"></label>
+                            <input type="file" asp-for="Producto.ImagenSubida" class="form-control" id="imageUpload" />
+                            <span asp-validation-for="Producto.ImagenSubida" class="text-danger"></span>
+                        </div>
+                        <div class="text-center">
+                            <img id="imagePreview" src="~/images/default-image.png" class="img-fluid rounded" alt="Vista previa de la imagen" style="max-height: 250px; border: 1px solid #ddd; padding: 5px;" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a asp-page="Index" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Volver a la Lista
+                    </a>
+                    <button type="submit" class="btn btn-primary" id="submitButton">
+                        <span id="button-text"><i class="fa fa-save"></i> Crear Producto</span>
+                        <span id="button-spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const imageUploadInput = document.getElementById("imageUpload");
+            const imagePreview = document.getElementById("imagePreview");
+            const createForm = document.getElementById("createProductForm");
+            const submitButton = document.getElementById("submitButton");
+            const buttonText = document.getElementById("button-text");
+            const buttonSpinner = document.getElementById("button-spinner");
+
+            // 1. Lógica para la vista previa de la imagen
+            imageUploadInput.addEventListener("change", function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // 2. Lógica para el botón de "Guardar" con indicador de carga
+            createForm.addEventListener("submit", function() {
+                // Comprobar si el formulario es válido del lado del cliente antes de deshabilitar el botón
+                if ($(this).valid()) {
+                    buttonText.textContent = "Guardando...";
+                    buttonSpinner.classList.remove("d-none");
+                    submitButton.disabled = true;
+                }
+            });
+        });
+    </script>
+}
