@@ -57,8 +57,7 @@ namespace Ecommerce.DataAccess.Migrations
                     b.Property<int>("CantidadDisponible")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoriaId")
-                        .IsRequired()
+                    b.Property<int>("CategoriaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
@@ -66,11 +65,10 @@ namespace Ecommerce.DataAccess.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
-                    b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<string>("Imagen")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()

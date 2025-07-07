@@ -11,7 +11,7 @@ namespace Ecommerce.DataAccess.Repository.Irepository
     {
        
         //Si se quiere actualizar una categoria
-        void Update(Producto entity);
+        void Update(Producto producto);
         
     }
 }

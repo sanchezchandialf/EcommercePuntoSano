@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250626132410_migracionfechacreacion")]
-    partial class migracionfechacreacion
+    [Migration("20250705124700_CreationModelProduct")]
+    partial class CreationModelProduct
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Ecommerce.DataAccess.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("Ecommerce.Models.Categoria", b =>
+            modelBuilder.Entity("Categoria", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,9 +68,6 @@ namespace Ecommerce.DataAccess.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
-                    b.Property<DateTime>("FechaCreacion")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<string>("Imagen")
                         .IsRequired()
                         .HasMaxLength(300)
@@ -93,7 +90,7 @@ namespace Ecommerce.DataAccess.Migrations
 
             modelBuilder.Entity("Ecommerce.Models.Producto", b =>
                 {
-                    b.HasOne("Ecommerce.Models.Categoria", "Categoria")
+                    b.HasOne("Categoria", "Categoria")
                         .WithMany("Productos")
                         .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -102,7 +99,7 @@ namespace Ecommerce.DataAccess.Migrations
                     b.Navigation("Categoria");
                 });
 
-            modelBuilder.Entity("Ecommerce.Models.Categoria", b =>
+            modelBuilder.Entity("Categoria", b =>
                 {
                     b.Navigation("Productos");
                 });

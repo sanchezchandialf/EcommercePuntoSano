@@ -19,6 +19,8 @@ public class Categoria
 
     public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
-    [ValidateNever]
+    //Relacion de uno a muchos, una categoria puede tener muchos productos
+  
+  
     public ICollection<Producto> Productos { get; set; }
 }
